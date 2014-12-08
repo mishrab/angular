@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="Showcase the directive hierarchy for scopes ... " />
+    <title></title>
+    <style>
+        [my-directive] {
+            padding: 1em;
+            background-color: #eee;
+        }
+    </style>
+    <link rel="stylesheet" href="../base.css"/>
+</head>
+<body>
+    <div ng-controller="MyController">
+        Data outside the directive: {{ data }}
+        <div my-directive></div>
+    </div>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp', []).controller('MyController', function ($scope) {
+            $scope.data = 'Data from MyController';
+        }).directive('myDirective', function () {
+            return {
+                template: '<div>Hello from myDirective! Data: {{data}}</div>',
+                scope: {}, // show how this controls the scope that is inherited
+                controller: function ($scope) {
+                    $scope.data = 'This is the data from the directive.';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

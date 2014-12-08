@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../base.css"/>
+</head>
+<body>
+    <div ng-controller="MyController">
+        {{ message }}
+    </div>
+    <div>Service Providers are</div>
+    <ul>
+        <li>Constructor Functions</li>
+        <li>When instantiated => Contain a property <code>.$get</code> which contains the service factory function. </li>
+    </ul>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp', []).controller('MyController', function ($scope) {
+            $scope.message = 'Services << Service Factory << Service Provider';
+        });
+    </script>
+</body>
+</html>

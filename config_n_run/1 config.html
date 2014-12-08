@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="Using the config phase to create directives and services ... "/>
+    <style>
+        [data-say-hello] {
+            padding: 1em;
+            background-color: #eee;
+            cursor: pointer;
+        }
+    </style>
+    <title></title>
+    <link rel="stylesheet" href="../base.css"/>
+</head>
+<body>
+    <h3>Creating Services and Directives in the configuration phase ... </h3>
+    <div data-say-hello>
+        Click to say Hello ....
+    </div>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script>
+        // Equivalent code for a directive:
+        angular.module('myApp', []).config(function ($provide, $compileProvider) {
+            // register a directive called say-hello
+            $compileProvider.directive('sayHello', function (Person) {
+                return function(scope, element, attrs) {
+                    element.on('click', function () {
+                        console.log('Hello from ' + Person.name);
+                    });
+                }
+            });
+            // register a service called Person
+            $provide.factory('Person', function () {
+                return {
+                    name: 'Talin Vartan'
+                };
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../base.css"/>
+</head>
+<body>
+    <div ng-controller="MyController">
+        {{ message }}
+    </div>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp', []).provider('Person', {
+            // This is the service provider object
+            // todo: Write the code in a function format - remember the constructor part.
+            $get: function () {
+                return {
+                    name: 'Talin Vartan'
+                }
+            }
+        }).controller('MyController', function ($scope, Person) {
+            $scope.message = 'Hello World from ' + Person.name;
+        });
+    </script>
+</body>
+</html>

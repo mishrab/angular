@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../base.css"/>
+</head>
+<body>
+    <div>
+        {{ message }}
+    </div>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp', []).run(function ($injector) {
+            // invoking a function with a dependency
+
+            // The following function has a dependency $rootScope
+            function modifyRootScope($rootScope) {
+                // modifyRootScope has a dependency
+                $rootScope.message = 'Hello World!';
+            }
+
+            // Inject $rootScope as a dependency
+            modifyRootScope.$inject = ['$rootScope'];
+            // invoke the modifyRootScope function with the $rootScope dependency
+            $injector.invoke(modifyRootScope);
+
+            // todo: write code to perform the above two statements in one line
+        });
+    </script>
+</body>
+</html>
